@@ -1,0 +1,27 @@
+{
+  "name": "counter-watch",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Overwatch counter-pick assistant (PWA + Android via Capacitor)",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "fetch-portraits": "node scripts/fetch-portraits.mjs",
+    "refresh-data": "node scripts/refresh-data.mjs",
+    "make-icons": "node scripts/make-icons.mjs",
+    "cap:sync": "npm run build && cap sync android",
+    "cap:open": "cap open android"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "vite-plugin-pwa": "^0.20.0"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "idb": "^8.0.0"
+  }
+}

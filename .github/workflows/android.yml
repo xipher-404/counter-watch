@@ -1,0 +1,97 @@
+name: Build Android APK
+
+# Cloud build for Counter Watch — mirrors the "run a command, scan a QR, install"
+# flow. The android/ native project is NOT committed; it's regenerated from the
+# Capacitor config on every run, so the web app stays the single source of truth.
+#
+# Trigger it from the GitHub UI: Actions tab -> "Build Android APK" -> Run workflow.
+# (Also runs on version tags like v0.1.0.) A workflow_dispatch or tag build
+# publishes a Release with the APK attached and shows a scannable QR in the run
+# summary. Plain pushes just build and upload the APK as an artifact.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17' # Capacitor 6 / AGP 8.x baseline
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download hero portraits (best-effort)
+        continue-on-error: true
+        run: npm run fetch-portraits
+
+      - name: Build web bundle
+        run: npm run build
+
+      - name: Add Android platform (Capacitor)
+        run: npx cap add android
+
+      - name: Sync web assets into Android project
+        run: npx cap sync android
+
+      - name: Generate launcher icons from resources/icon.png (best-effort)
+        continue-on-error: true
+        run: npx @capacitor/assets generate --android --iconBackgroundColor '#0b1320' --iconBackgroundColorDark '#0b1320'
+
+      - name: Build debug APK
+        working-directory: android
+        run: |
+          chmod +x ./gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Stage APK
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk counter-watch-debug.apk
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: counter-watch-debug-apk
+          path: counter-watch-debug.apk
+          if-no-files-found: error
+
+      - name: Publish release + QR (manual runs and tags)
+        if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="build-${{ github.run_number }}"
+          else
+            TAG="${GITHUB_REF_NAME}"
+          fi
+          gh release create "$TAG" counter-watch-debug.apk \
+            --title "Counter Watch APK ($TAG)" \
+            --notes "Debug APK for sideloading. On the phone, allow 'Install unknown apps' for your browser, then download/scan the asset below and open it." \
+            2>/dev/null || gh release upload "$TAG" counter-watch-debug.apk --clobber
+          APK_URL="${{ github.server_url }}/${{ github.repository }}/releases/download/${TAG}/counter-watch-debug.apk"
+          {
+            echo "### 📱 Counter Watch APK is ready"
+            echo ""
+            echo "**[Download APK]($APK_URL)**"
+            echo ""
+            echo "Scan to install on your phone (works when the repo is public):"
+            echo ""
+            echo "![Install QR](https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${APK_URL})"
+          } >> "$GITHUB_STEP_SUMMARY"

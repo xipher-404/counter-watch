@@ -1,0 +1,5 @@
+This application will be focused on the Blizzard game titled Overwatch. The application can either be web based, or kicked out for side loading to an Android device. The applicaiotn will be hosted locally on my dev machine, and is intended to assist the user with selecting the proper counters to another teams hero selections. We can create local databases when needed, versus needing to kick out ot Supabase. This would include tanks, dps characters, and support. The user should be able to select a hero, and the appropriate counters would be displayed. The displayed counter heroes should include tanks, dps, and support.
+
+Please recommend how data will be saved, database or some other path, and how data will be updated as Blizzard changes the game with updates, and when players change gameplay strategies (deemed META).
+
+Ask important clarifying questions before we start coding processes.

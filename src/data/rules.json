@@ -1,0 +1,116 @@
+{
+  "_meta": {
+    "schema_version": 1,
+    "description": "Attribute-based scoring rules. Applied as additive modifiers on top of a neutral base score (5). Manual overrides in counters.json replace the base+rules total when present.",
+    "base_score": 5,
+    "rule_format": "Each rule has if_counter (attributes the counter pick must satisfy) and if_enemy (attributes the enemy must satisfy). When both match, modifier is added to score with the reason recorded for UI display.",
+    "tuning_notes": "These rules encode common counter heuristics from YouTube guides (hitscan vs flying, beam vs DM, anti-dive, etc.). Adjust modifiers as you learn what feels right."
+  },
+  "rules": [
+    {
+      "id": "hitscan-vs-flying",
+      "if_counter": { "damage_type": ["hitscan"] },
+      "if_enemy":   { "mobility": ["flying"] },
+      "modifier": 2.5,
+      "reason": "Hitscan reliably tracks flying targets"
+    },
+    {
+      "id": "projectile-vs-flying",
+      "if_counter": { "damage_type": ["projectile"] },
+      "if_enemy":   { "mobility": ["flying"] },
+      "modifier": -1.5,
+      "reason": "Projectile travel time makes hitting flyers hard"
+    },
+    {
+      "id": "beam-vs-flying",
+      "if_counter": { "damage_type": ["beam"] },
+      "if_enemy":   { "mobility": ["flying"] },
+      "modifier": 1,
+      "reason": "Beams track but range-limited vs airborne"
+    },
+    {
+      "id": "long-range-vs-flying",
+      "if_counter": { "range": ["long"] },
+      "if_enemy":   { "mobility": ["flying"] },
+      "modifier": 1,
+      "reason": "Long range punishes airborne enemies"
+    },
+    {
+      "id": "anti-shield-vs-shield",
+      "if_counter": { "tags_any": ["anti-shield", "anti-barrier"] },
+      "if_enemy":   { "tags_any": ["shield", "barrier"] },
+      "modifier": 2,
+      "reason": "Anti-shield kit shreds barriers"
+    },
+    {
+      "id": "splash-vs-shield",
+      "if_counter": { "tags_any": ["aoe", "splash", "anti-barrier"] },
+      "if_enemy":   { "tags_any": ["shield", "barrier"] },
+      "modifier": 1,
+      "reason": "AOE bypasses or pressures shields"
+    },
+    {
+      "id": "anti-heal-vs-heal-dependent",
+      "if_counter": { "tags_any": ["anti-heal", "anti-heal-nade", "wound"] },
+      "if_enemy":   { "tags_any": ["self-heal", "heal-dependent"] },
+      "modifier": 2,
+      "reason": "Anti-heal shuts down self-sustain"
+    },
+    {
+      "id": "hack-vs-mobility",
+      "if_counter": { "tags_any": ["hack"] },
+      "if_enemy":   { "mobility": ["high", "flying"] },
+      "modifier": 2,
+      "reason": "Hack disables mobility abilities"
+    },
+    {
+      "id": "anti-dive-vs-dive",
+      "if_counter": { "tags_any": ["anti-dive"] },
+      "if_enemy":   { "tags_any": ["dive", "flank"] },
+      "modifier": 2,
+      "reason": "Anti-dive kit punishes flankers"
+    },
+    {
+      "id": "dive-vs-low-mobility-backline",
+      "if_counter": { "tags_any": ["dive", "flank"] },
+      "if_enemy":   { "mobility": ["low"], "role": ["support"] },
+      "modifier": 2,
+      "reason": "Dive eats supports with no escape"
+    },
+    {
+      "id": "dive-vs-snipers",
+      "if_counter": { "tags_any": ["dive", "flank"] },
+      "if_enemy":   { "tags_any": ["scope", "one-shot"] },
+      "modifier": 1.5,
+      "reason": "Dive disrupts scoped snipers"
+    },
+    {
+      "id": "lock-on-beam-vs-mobile",
+      "if_counter": { "tags_any": ["lock-on-beam", "lock-on"] },
+      "if_enemy":   { "mobility": ["high"] },
+      "modifier": 2,
+      "reason": "Lock-on tracks high-mobility targets"
+    },
+    {
+      "id": "long-range-vs-low-mobility",
+      "if_counter": { "range": ["long"] },
+      "if_enemy":   { "mobility": ["low"] },
+      "modifier": 1,
+      "reason": "Stationary targets are easy long-range fodder"
+    },
+    {
+      "id": "close-range-vs-long-sniper",
+      "if_counter": { "range": ["close"] },
+      "if_enemy":   { "tags_any": ["one-shot", "scope"] },
+      "modifier": -1,
+      "reason": "Close-range hero struggles to reach a sniper"
+    },
+    {
+      "id": "mobile-vs-low-mobility",
+      "if_counter": { "mobility": ["high", "flying"] },
+      "if_enemy":   { "mobility": ["low"] },
+      "modifier": 1,
+      "reason": "Mobility advantage lets you choose engagements"
+    }
+  ]
+}

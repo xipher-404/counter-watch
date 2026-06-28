@@ -1,0 +1,48 @@
+{
+  "_meta": {
+    "schema_version": 1,
+    "season": "Season 3 — Into the Tiger's Den",
+    "patch_window": "2026-06 (post-Shion)",
+    "source": "Consensus of public Season 3 tier lists & win-rate trackers",
+    "sources": [
+      "https://www.counterwatch.gg/stats/overwatch/tier-list",
+      "https://mobalytics.gg/overwatch/tier-lists/standard",
+      "https://www.pcgamer.com/games/fps/overwatch-tier-list/",
+      "https://owherostats.com/tier-list"
+    ],
+    "last_updated": "2026-06-28",
+    "default_tier": "B",
+    "tier_weights": { "S": 1.5, "A": 1.2, "B": 1.0, "C": 0.85, "D": 0.7 },
+    "tier_weights_note": "Used in the Team tab to weight a counter's averaged score by each enemy's meta tier, so countering a meta-defining S/A pick is rewarded over countering a weak filler. 1.0 = no effect. Tune freely; set all to 1.0 to disable weighting globally.",
+    "disclaimer": "Approximate community-consensus snapshot for a counter-pick app — NOT exact ladder stats. Competitive meta shifts every ~2-week patch and sources openly disagree (e.g. Reinhardt was rated S-tier by some win-rate sites and D-tier by editorial guides in the same week). Read S = currently dominant, A = strong/common, B = viable (default for unlisted heroes), C = niche, D = struggling. Refresh by re-running the research and replacing this file; the roster/kit data in heroes.json is far more stable and is verified separately via `npm run refresh-data`."
+  },
+  "summary": "Season 3 is a barrier-heavy poke meta in a tug-of-war with dive. Beam/anti-barrier damage that melts shields is on top: Torbjorn leads the whole roster (~55.6% win rate), with Symmetra (~54.1%) punishing the shield tanks (Sigma, Domina) and Zenyatta (~53.9%) anchoring supports. Sigma is the most-picked, most-reliable tank. Newest hero Shion is a strong backline diver. Vendetta has fallen off after survivability nerfs since her Season 1 dominance.",
+  "tiers": {
+    "sigma": { "tier": "S", "note": "Most-picked tank with the best stat profile; barrier poke defines the meta." },
+    "torbjorn": { "tier": "S", "note": "Highest win rate in the game (~55.6%); turret + overload shred the shield meta." },
+    "symmetra": { "tier": "S", "note": "~54.1% win rate; beam scaling melts Sigma/Domina barriers and tanks." },
+    "zenyatta": { "tier": "S", "note": "~53.9% win rate; discord + volley output anchors the support line." },
+
+    "zarya": { "tier": "A", "note": "Beam shreds the barrier meta; bubbles answer dive." },
+    "junker-queen": { "tier": "A", "note": "Safe, self-sufficient brawl tank; anti-heal stays valuable." },
+    "wrecking-ball": { "tier": "A", "note": "Reliable dive/disruption pick that creates space cheaply." },
+    "sojourn": { "tier": "A", "note": "One of the strongest damage dealers; railgun bursts squishies and tanks." },
+    "reaper": { "tier": "A", "note": "Anti-tank shred thrives against the brawl/barrier frontlines." },
+    "pharah": { "tier": "A", "note": "Air angles pressure the grounded poke comps." },
+    "shion": { "tier": "A", "note": "High-mobility backline diver; strong in messy fights, season's newest threat." },
+    "emre": { "tier": "A", "note": "Versatile burst rifle + grenades; a Season 1 hero that stayed strong." },
+    "tracer": { "tier": "A", "note": "Dive staple that punishes immobile poke supports." },
+    "illari": { "tier": "A", "note": "Pylon sustain + burst rifle; strong ranged support value." },
+    "brigitte": { "tier": "A", "note": "Anti-dive utility keeps her relevant against Tracer/Shion." },
+    "wuyang": { "tier": "A", "note": "Flexible water support; healing + knockback utility everywhere in pro play." },
+    "lucio": { "tier": "A", "note": "Speed enables the brawl/dive tempo; near-permanent pick." },
+    "ana": { "tier": "A", "note": "Anti-nade + sleep remain meta-defining utility." },
+    "kiriko": { "tier": "A", "note": "Suzu cleanse + mobility; reliable in most comps." },
+    "juno": { "tier": "A", "note": "Mobility + amped output; strong flexible support." },
+
+    "reinhardt": { "tier": "B", "note": "Heavily contested — win-rate sites rate him near-top, editorial guides near-bottom because mobile heroes kite his shield. Treat as map/comp dependent." },
+    "domina": { "tier": "B", "note": "Middling (~50.7% win rate); strong barrier value but hard-countered by the beam DPS on top right now." },
+    "vendetta": { "tier": "B", "note": "Fell off after survivability nerfs; no longer the Season 1 powerhouse." },
+    "mizuki": { "tier": "B", "note": "Contested support — rated S by some lists, mid by others; situational." }
+  }
+}

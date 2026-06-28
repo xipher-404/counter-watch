@@ -1,0 +1,311 @@
+{
+  "_meta": {
+    "schema_version": 1,
+    "source": "esports.gg Best Overwatch hero counters (2026)",
+    "source_url": "https://esports.gg/news/overwatch/overwatch-2-hero-counters/",
+    "source_published": "2026-04-14",
+    "score_scale": "1-10 where 10 = strong counter pick, 5 = neutral, 1 = bad pick",
+    "default_listed_counter_score": 8,
+    "notes": "Each entry records who counters whom from esports.gg's published list. Score 8 was used for every explicit counter mention. The user should tune these scores after live testing — scores are starting points, not authoritative."
+  },
+  "overrides": {
+    "ana": {
+      "winston": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Dive shuts down Ana's positioning" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack disables nade/sleep; Ana has no escape" },
+      "kiriko": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Suzu cleanses anti-heal nade and sleep" },
+      "widowmaker": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Out-snipes Ana at long range" }
+    },
+    "anran": {
+      "cassidy": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "kiriko": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "reaper": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "ashe": {
+      "genji": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Dive closes range; deflect punishes" },
+      "winston": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Dives Ashe; bubble protects against scoped shots" },
+      "doomfist": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Slam in to disrupt scope" },
+      "widowmaker": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Out-snipes" },
+      "kiriko": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Headshots from cover" }
+    },
+    "baptiste": {
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack disables Immortality Field" },
+      "reaper": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Close-range shred" },
+      "venture": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Burrow + dive disrupts" }
+    },
+    "bastion": {
+      "genji": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Deflect returns sentry damage" },
+      "sigma": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Kinetic Grasp absorbs sentry; barrier blocks" },
+      "ana": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Sleep dart shuts down sentry" }
+    },
+    "brigitte": {
+      "ramattra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "junkrat": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "AOE bypasses shield" },
+      "baptiste": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "cassidy": {
+      "widowmaker": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Out-ranges" },
+      "tracer": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Blink dodges fan-the-hammer" },
+      "mei": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Freeze locks down Cassidy" }
+    },
+    "dva": {
+      "mei": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Freeze stops boosters; ice wall punishes" },
+      "symmetra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Beam ramps up; not absorbed by Defense Matrix" },
+      "zarya": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Beam shreds D.Va; bubble counters dive" }
+    },
+    "doomfist": {
+      "echo": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Flying mobility counters slam" },
+      "pharah": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Stays airborne above Doomfist's reach" },
+      "mei": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Freeze stops slam combos" }
+    },
+    "domina": {
+      "reaper": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Anti-tank shotgun shred" },
+      "vendetta": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "mei": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack disables" },
+      "winston": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "moira": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "echo": {
+      "cassidy": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hitscan vs flying" },
+      "ashe": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hitscan vs flying" },
+      "soldier-76": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hitscan vs flying" }
+    },
+    "emre": {
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack disables" }
+    },
+    "freja": {
+      "cassidy": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "soldier-76": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "genji": {
+      "moira": { "score": 9, "source": "esports.gg-2026-04-14", "reason": "Lock-on beam tracks through wall-climb and deflect" },
+      "symmetra": { "score": 9, "source": "esports.gg-2026-04-14", "reason": "Lock-on beam tracks Genji" },
+      "winston": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Beam tracks; bubble for safety" },
+      "zarya": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Beam tracks; bubble counter" }
+    },
+    "hanzo": {
+      "winston": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Dives Hanzo; bubble blocks arrows" },
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Defense Matrix eats arrows" },
+      "echo": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Flying angle Hanzo can't reliably hit" },
+      "genji": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Mobility punishes static archer" }
+    },
+    "hazard": {
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "ana": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "orisa": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack disables" }
+    },
+    "illari": {
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "DM eats charged solar shots" },
+      "genji": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Dive shuts down sniper support" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack + flank" },
+      "kiriko": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "jetpack-cat": {
+      "soldier-76": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hitscan vs flying" },
+      "cassidy": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hitscan vs flying" },
+      "ashe": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hitscan vs flying" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack disables jetpack" }
+    },
+    "junker-queen": {
+      "orisa": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Fortify shrugs off wound bleed" },
+      "bastion": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Sentry shred" },
+      "mei": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Freeze stops rampage" },
+      "kiriko": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Suzu cleanses wound bleed" }
+    },
+    "junkrat": {
+      "pharah": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Flying above bombs" },
+      "echo": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Flying above bombs" }
+    },
+    "juno": {
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack disables boosters" },
+      "ashe": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hitscan vs flying" },
+      "orisa": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "kiriko": {
+      "winston": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Beam tracks through teleport" },
+      "pharah": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "echo": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "lifeweaver": {
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack disables petal/grip" },
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "DM eats thorn volley" },
+      "pharah": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "lucio": {
+      "ramattra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack stops wallride/speed" },
+      "moira": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Lock-on beam tracks Lúcio" }
+    },
+    "mauga": {
+      "sigma": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Accretion stun + barrier" },
+      "kiriko": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Suzu cleanses cardiac slam" },
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "sojourn": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Railgun chunks heal-dependent tank" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack disables overdrive" }
+    },
+    "mei": {
+      "orisa": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Fortify ignores freeze slow" },
+      "kiriko": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Suzu cleanses freeze" },
+      "pharah": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Flying above ice wall reach" }
+    },
+    "mercy": {
+      "sombra": { "score": 9, "source": "esports.gg-2026-04-14", "reason": "Hack disables Guardian Angel; flank kill" },
+      "soldier-76": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hitscan vs flying GA" },
+      "cassidy": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hitscan vs GA" },
+      "widowmaker": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "One-shot Mercy out of GA" },
+      "shion": { "score": 8, "source": "esports.gg-2026-06", "reason": "Joyride flank catches Mercy out of position" }
+    },
+    "mizuki": {
+      "pharah": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "junkrat": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "moira": {
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "DM eats damage orbs" },
+      "brigitte": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Bash + flail interrupts fade" },
+      "reaper": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "orisa": {
+      "bastion": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Sentry shreds Orisa" },
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "winston": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "lifeweaver": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Pull yanks Orisa out of position" },
+      "zarya": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack disables fortify/javelin" },
+      "zenyatta": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Discord orb melts Orisa" }
+    },
+    "pharah": {
+      "cassidy": { "score": 9, "source": "esports.gg-2026-04-14", "reason": "Hitscan + magnade" },
+      "widowmaker": { "score": 9, "source": "esports.gg-2026-04-14", "reason": "Hitscan one-shot vs flying" },
+      "soldier-76": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hitscan vs flying" },
+      "symmetra": { "score": 7, "source": "esports.gg-2026-04-14", "reason": "Lock-on orb + secondary" }
+    },
+    "ramattra": {
+      "zenyatta": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Discord orb shreds Nemesis form" },
+      "ana": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Sleep + anti-heal nade" },
+      "orisa": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "hazard": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "reaper": {
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "DM eats shotgun spread; boosters out-mobility" },
+      "pharah": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Out-of-range flying" },
+      "echo": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Out-of-range flying" }
+    },
+    "reinhardt": {
+      "ramattra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Nemesis form anti-shield" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack disables shield/charge" },
+      "pharah": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Out-of-reach + splash" },
+      "junkrat": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "AOE shreds shield" }
+    },
+    "roadhog": {
+      "ashe": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Long-range pre-fire" },
+      "sojourn": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Railgun bursts big target" },
+      "orisa": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "shion": {
+      "sombra": { "score": 9, "source": "esports.gg-2026-06", "reason": "Hack knocks Shion off her bike and cancels Joyride/Evade mid-dive" },
+      "ana": { "score": 9, "source": "esports.gg-2026-06", "reason": "Sleep dart stops the dive; anti-nade caps her overhealth sustain" },
+      "brigitte": { "score": 8, "source": "esports.gg-2026-06", "reason": "Anti-dive shield + stun punishes the flank" },
+      "mei": { "score": 8, "source": "esports.gg-2026-06", "reason": "Freeze/CC locks down her combo momentum" },
+      "cassidy": { "score": 8, "source": "esports.gg-2026-06", "reason": "Magnade roots her; hitscan out-trades at range" },
+      "junkrat": { "score": 7, "source": "esports.gg-2026-06", "reason": "Trap + no-line-of-sight spam denies flank routes" }
+    },
+    "sierra": {
+      "cassidy": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "soldier-76": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "freja": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "sigma": {
+      "zarya": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Beam ramps; bubble counters orbs" },
+      "ramattra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Anti-shield" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack disables grasp/accretion" },
+      "bastion": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Sentry shreds barrier" },
+      "symmetra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Beam shreds barrier" }
+    },
+    "sojourn": {
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "DM eats railgun" },
+      "widowmaker": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Out-snipes" },
+      "winston": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Dive disrupts charge" },
+      "tracer": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Flank pressure" }
+    },
+    "soldier-76": {
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "DM eats helix rockets" },
+      "winston": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Beam tracks; dive" },
+      "widowmaker": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Out-ranges" },
+      "ashe": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Out-ranges" },
+      "lucio": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Speed disrupts aim" }
+    },
+    "sombra": {
+      "hanzo": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Sonic arrow reveals stealth" },
+      "moira": { "score": 9, "source": "esports.gg-2026-04-14", "reason": "Damage orb reveals + lock-on beam" },
+      "zenyatta": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Discord orb negates burst dmg" }
+    },
+    "symmetra": {
+      "winston": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Bubble blocks beam ramp" },
+      "zarya": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Bubble eats beam" },
+      "pharah": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Out-of-range flying" }
+    },
+    "torbjorn": {
+      "winston": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Bubble + beam takes turret" },
+      "ramattra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "widowmaker": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Long-range turret kill" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack turret + Torb" },
+      "junkrat": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "AOE bombs turret" }
+    },
+    "tracer": {
+      "torbjorn": { "score": 9, "source": "esports.gg-2026-04-14", "reason": "Auto-tracking turret + rivet" },
+      "moira": { "score": 9, "source": "esports.gg-2026-04-14", "reason": "Lock-on beam tracks Tracer" },
+      "symmetra": { "score": 9, "source": "esports.gg-2026-04-14", "reason": "Lock-on beam ramps; turrets reveal" }
+    },
+    "vendetta": {
+      "cassidy": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "sigma": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Accretion stun + barrier kiting" }
+    },
+    "venture": {
+      "mei": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Freeze stops drill-dash" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack interrupts burrow" },
+      "pharah": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Out-of-reach flying" },
+      "echo": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Out-of-reach flying" }
+    },
+    "widowmaker": {
+      "winston": { "score": 9, "source": "esports.gg-2026-04-14", "reason": "Dives sniper; bubble blocks shots" },
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "DM eats sniper rounds" },
+      "wrecking-ball": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Roll closes distance" },
+      "genji": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Dive + deflect" },
+      "sombra": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hack disables grapple" },
+      "lucio": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Boop off ledge; speed disrupts aim" },
+      "shion": { "score": 8, "source": "esports.gg-2026-06", "reason": "Motorcycle dive closes on the stationary sniper" }
+    },
+    "winston": {
+      "bastion": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Sentry shreds Winston in bubble" },
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Boosters match Winston's dive and burst him down (note: Defense Matrix does NOT block his Tesla beam)" }
+    },
+    "wrecking-ball": {
+      "sombra": { "score": 9, "source": "esports.gg-2026-04-14", "reason": "Hack stops roll mid-dive" },
+      "cassidy": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Magnade locks Ball" },
+      "tracer": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Out-mobiles Ball" },
+      "roadhog": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Hook out of roll" },
+      "brigitte": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Anti-dive stuns" }
+    },
+    "wuyang": {
+      "dva": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "winston": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    },
+    "zarya": {
+      "reinhardt": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Don't shoot bubble; pin punish" },
+      "soldier-76": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Pace shots to avoid charging bubbles" },
+      "cassidy": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "ashe": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" },
+      "lifeweaver": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Pull yanks Zarya away from team" }
+    },
+    "zenyatta": {
+      "sombra": { "score": 9, "source": "esports.gg-2026-04-14", "reason": "Stealth flank; no escape mobility" },
+      "tracer": { "score": 9, "source": "esports.gg-2026-04-14", "reason": "Blink-burst Zen who can't escape" },
+      "shion": { "score": 8, "source": "esports.gg-2026-06", "reason": "Motorcycle flank bursts an immobile Zen" },
+      "junker-queen": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "Wound bleed + rampage" },
+      "zarya": { "score": 8, "source": "esports.gg-2026-04-14", "reason": "" }
+    }
+  }
+}

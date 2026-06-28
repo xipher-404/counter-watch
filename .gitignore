@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.vite/
+android/
+ios/
+*.log
+.DS_Store
+
+# Fetched hero portraits are Blizzard art — not committed. CI and local devs
+# regenerate them from the URLs in scripts/portrait-sources.json:
+#   npm run refresh-data -- --write   (fills the URLs)
+#   npm run fetch-portraits           (downloads the images)
+public/assets/heroes/*.png
+public/assets/heroes/*.webp

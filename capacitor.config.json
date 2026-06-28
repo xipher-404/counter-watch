@@ -1,0 +1,11 @@
+{
+  "appId": "com.counterwatch.app",
+  "appName": "Counter Watch",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}
