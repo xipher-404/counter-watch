@@ -14,10 +14,27 @@ const root = document.getElementById('app');
 const tabsNav = document.querySelector('.tabs');
 const tabButtons = document.querySelectorAll('.tab');
 const brand = document.querySelector('.brand');
+const modeToggle = document.querySelector('.mode-toggle');
 
+let lastCounterTab = 'single'; // where the toggle returns to from Tiers
+
+// The toggle is the always-visible way to jump between Counters and Tiers
+// (the brand title still goes Home).
 function setMode(mode) {
   document.body.dataset.mode = mode; // 'home' | 'counters' | 'tiers'
   if (tabsNav) tabsNav.hidden = mode !== 'counters';
+  if (!modeToggle) return;
+  if (mode === 'tiers') {
+    modeToggle.hidden = false;
+    modeToggle.textContent = '🎯 Counters';
+    modeToggle.onclick = () => go(lastCounterTab);
+  } else if (mode === 'counters') {
+    modeToggle.hidden = false;
+    modeToggle.textContent = '📊 Tier Rankings';
+    modeToggle.onclick = () => go('tiers');
+  } else {
+    modeToggle.hidden = true; // home already shows both choices
+  }
 }
 
 function normalize(hash) {
@@ -39,6 +56,7 @@ async function render(view) {
     return;
   }
   setMode('counters');
+  lastCounterTab = view;
   for (const b of tabButtons) {
     const active = b.dataset.tab === view;
     b.classList.toggle('active', active);
