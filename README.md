@@ -8,12 +8,22 @@ The app opens on a **home screen** with two modes:
 
 - **Counters** — the original counter-pick assistant:
   - **Single tab** — tap one enemy hero, see top counters with scores 1–10 and reasons (hitscan vs flying, anti-heal vs Mauga, etc.).
-  - **Team tab** — fill 5 enemy slots (1 tank, 2 dps, 2 support); recommendations re-rank against the whole composition, weighted by each enemy's meta tier.
+  - **Team tab (Team Builder)** — fill in your team and/or the enemy team (5 slots each). Get the best picks to **round out your team** (by meta tier, synergy, and counter-value vs the enemy) and the strongest **counters to the enemy** comp. Tap a recommended hero to add it to your team. Slots can be filled by hand or from a **photo** (see below).
   - **Admin tab** — upload portraits for any hero. Uploads persist in IndexedDB and override bundled images.
   - Filter by counter role and damage type (hitscan / projectile / beam / melee / mixed).
 - **Tier Rankings** — every hero ranked **S–E by current competitive performance**. Tiers derive from official Blizzard win rates (auto-refreshed) with a thin layer of manual pro/high-elo overrides, plus a cross-link to ML7's tier list. Tap any hero to jump to its counters.
 
 The brand title (top-left) returns to the home screen.
+
+### Add a team by photo (cloud vision)
+
+In the Team Builder, **📷 Add by photo** sends a photo of a game screen (hero select, scoreboard, or a phone-camera shot of a monitor) to a small **Supabase edge function** that runs **Claude vision** and returns the heroes it sees; they drop into the matching open slots. The image is downscaled client-side before upload to keep cost tiny.
+
+Setup ([`supabase/functions/counter-watch-vision/`](supabase/functions/counter-watch-vision/)):
+
+1. The function is deployed to the Supabase project; its URL + public anon key live in [`src/config.js`](src/config.js).
+2. Set the Anthropic key as a function secret (the only server-side secret): Supabase dashboard → the project → **Edge Functions → Secrets** → add `ANTHROPIC_API_KEY`. Until it's set, the button reports that it isn't connected and manual entry is used.
+3. **Cost/abuse note:** the function is gated only by the public anon key, so set a spend cap on the Anthropic key (console.anthropic.com → Limits). The model is `claude-opus-4-8`; switch the `MODEL` constant in the function to `claude-haiku-4-5` for ~5× cheaper, lower-accuracy detection.
 
 ## Stack
 
