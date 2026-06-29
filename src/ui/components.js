@@ -33,13 +33,13 @@ export async function heroPortrait(hero, { size = 'md', clickable = true, onClic
   wrap.appendChild(img);
   wrap.appendChild(fallback);
   wrap.appendChild(el('span', { class: 'portrait-name' }, hero.name));
-  if (hero.new_hero) wrap.appendChild(el('span', { class: 'portrait-new', title: 'Newer hero — kit data may be limited' }, 'NEW'));
+  if (hero.new_hero) wrap.appendChild(el('span', { class: 'portrait-new', title: 'Newer hero, kit data may be limited' }, 'NEW'));
 
   if (showMetaBadge) {
     const meta = metaTierFor(hero.id);
     if (meta.explicit && ['S', 'A', 'D', 'E'].includes(meta.tier)) {
       const wr = meta.winrate != null ? ` (${meta.winrate}% win rate)` : '';
-      const src = meta.source === 'override' ? ` — manual: ${meta.note}` : '';
+      const src = meta.source === 'override' ? `, manual: ${meta.note}` : '';
       wrap.appendChild(
         el('span', {
           class: `portrait-tier tier-${meta.tier}`,
@@ -69,7 +69,7 @@ export function scoreBadge(score) {
 }
 
 export function reasonsList(reasons) {
-  if (!reasons || reasons.length === 0) return el('span', { class: 'reason-empty' }, '—');
+  if (!reasons || reasons.length === 0) return el('span', { class: 'reason-empty' }, '-');
   return el(
     'ul',
     { class: 'reasons' },

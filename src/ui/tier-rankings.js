@@ -63,7 +63,7 @@ export async function renderTierRankings(root) {
       band.appendChild(el('div', { class: `tier-band-label tier-${tier}` }, tier));
       const row = el('div', { class: 'tier-band-heroes' });
       if (items.length === 0) {
-        row.appendChild(el('span', { class: 'tier-empty' }, '—'));
+        row.appendChild(el('span', { class: 'tier-empty' }, '-'));
       } else {
         const chips = await Promise.all(items.map(({ hero, meta }) => tierHero(hero, meta)));
         for (const c of chips) row.appendChild(c);
@@ -77,7 +77,7 @@ export async function renderTierRankings(root) {
 }
 
 async function tierHero(hero, meta) {
-  // reuse the portrait (suppress its own tier badge — the band already says the tier)
+  // reuse the portrait (suppress its own tier badge, the band already says the tier)
   const portrait = await heroPortrait(hero, {
     size: 'sm',
     showMetaBadge: false,
@@ -90,7 +90,7 @@ async function tierHero(hero, meta) {
   if (meta.source === 'override') {
     portrait.classList.add('overridden');
     portrait.appendChild(el('span', { class: 'tier-hero-mark', title: `Manual override: ${meta.note}` }, '✎'));
-    portrait.title = `${hero.name} — manual override: ${meta.note}`;
+    portrait.title = `${hero.name}, manual override: ${meta.note}`;
   }
   return portrait;
 }

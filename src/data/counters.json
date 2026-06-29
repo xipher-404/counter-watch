@@ -6,7 +6,7 @@
     "source_published": "2026-04-14",
     "score_scale": "1-10 where 10 = strong counter pick, 5 = neutral, 1 = bad pick",
     "default_listed_counter_score": 8,
-    "notes": "Each entry records who counters whom from esports.gg's published list. Score 8 was used for every explicit counter mention. The user should tune these scores after live testing — scores are starting points, not authoritative."
+    "notes": "Each entry records who counters whom from esports.gg's published list. Score 8 was used for every explicit counter mention. The user should tune these scores after live testing; scores are starting points, not authoritative."
   },
   "overrides": {
     "ana": {

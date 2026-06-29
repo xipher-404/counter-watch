@@ -61,6 +61,7 @@ body {
   font-family: inherit;
   cursor: pointer;
 }
+.brand:hover { text-decoration: underline; }
 
 .tabs {
   display: flex;

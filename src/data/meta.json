@@ -1,10 +1,10 @@
 {
   "_meta": {
     "schema_version": 2,
-    "season": "Season 3 — Into the Tiger's Den",
+    "season": "Season 3: Into the Tiger's Den",
     "patch_window": "2026-06 (post-Shion)",
-    "ranking_basis": "Hybrid — official competitive win rate is the backbone; a small set of manual overrides captures nuance that all-rank win rate misses.",
-    "stats_source": "OverFast API /heroes/stats — official Blizzard competitive stats (PC, Americas)",
+    "ranking_basis": "Hybrid: official competitive win rate is the backbone; a small set of manual overrides captures nuance that all-rank win rate misses.",
+    "stats_source": "OverFast API /heroes/stats, official Blizzard competitive stats (PC, Americas)",
     "stats_url": "https://overfast-api.tekrop.fr/heroes/stats?gamemode=competitive&platform=pc&region=americas",
     "stats_updated": "2026-06-28",
     "last_updated": "2026-06-28",
@@ -36,15 +36,15 @@
     "tier_weights_note": "Used in the Team tab to weight a counter's averaged score by each enemy's tier, so countering a strong pick is rewarded over a weak one. 1.0 = no effect; set all to 1.0 to disable.",
     "community_links": [
       {
-        "label": "ML7 — Season 3 Meta Tier List",
+        "label": "ML7: Season 3 Meta Tier List",
         "author": "ML7",
         "url": "https://www.youtube.com/@mL7support"
       }
     ],
     "overrides_note": "Manual tier adjustments layered on top of the win-rate backbone, for nuance all-rank win rate misses (high-elo/pro value, or low-rank inflation). Each says why. Cross-check against community_links (e.g. ML7) and edit freely. Delete an entry to fall back to the hero's win-rate tier.",
-    "disclaimer": "Tier = the hero's official competitive win-rate bucket, unless overridden. Win rate is aggregated across all ranks, so it rewards easy-to-pilot heroes and understates high-skill-ceiling ones — that's what the overrides and the ML7 cross-link are for. Stats refresh via `npm run refresh-data -- --write`; thresholds and overrides are hand-tunable here."
+    "disclaimer": "Tier = the hero's official competitive win-rate bucket, unless overridden. Win rate is aggregated across all ranks, so it rewards easy-to-pilot heroes and understates high-skill-ceiling ones; that's what the overrides and the ML7 cross-link are for. Stats refresh via `npm run refresh-data -- --write`; thresholds and overrides are hand-tunable here."
   },
-  "summary": "Season 3 is a barrier-heavy poke-vs-dive meta. By raw competitive win rate the ladder leaders are Shion and Reinhardt, with Zenyatta and Mizuki strong on the support line; Sojourn, D.Va and Orisa sit at the bottom. Note the high-elo/pro picture differs from all-rank win rate — see the overrides and ML7's tier list for that lens.",
+  "summary": "Season 3 is a barrier-heavy poke-vs-dive meta. By raw competitive win rate the ladder leaders are Shion and Reinhardt, with Zenyatta and Mizuki strong on the support line; Sojourn, D.Va and Orisa sit at the bottom. Note the high-elo/pro picture differs from all-rank win rate; see the overrides and ML7's tier list for that lens.",
   "overrides": {
     "reinhardt": {
       "tier": "B",
@@ -52,7 +52,7 @@
     },
     "sojourn": {
       "tier": "A",
-      "note": "Manual: high-elo/pro staple — all-rank win rate badly understates her skill-ceiling value."
+      "note": "Manual: high-elo/pro staple; all-rank win rate badly understates her skill-ceiling value."
     },
     "tracer": {
       "tier": "A",

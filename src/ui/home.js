@@ -13,7 +13,7 @@ export function renderHome(root, { onCounters, onTiers }) {
     homeCard('🎯', 'Counters', 'Pick the enemy hero or team and get ranked counter picks across every role.', onCounters),
   );
   cards.appendChild(
-    homeCard('📊', 'Tier Rankings', 'Every hero ranked S–E by current competitive performance, refreshed from official stats.', onTiers),
+    homeCard('📊', 'Tier Rankings', 'Every hero ranked S-E by current competitive performance, refreshed from official stats.', onTiers),
   );
   view.appendChild(cards);
 

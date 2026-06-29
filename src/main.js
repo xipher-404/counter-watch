@@ -20,24 +20,24 @@ function setMode(mode) {
   if (tabsNav) tabsNav.hidden = mode !== 'counters';
 }
 
-async function show(view) {
+function normalize(hash) {
+  const v = (hash || '').replace('#', '');
+  return VIEWS.includes(v) ? v : 'home';
+}
+
+async function render(view) {
   await refreshPortraitCache();
 
   if (view === 'home') {
     setMode('home');
-    renderHome(root, { onCounters: () => show('single'), onTiers: () => show('tiers') });
-    history.replaceState(null, '', '#home');
+    renderHome(root, { onCounters: () => go('single'), onTiers: () => go('tiers') });
     return;
   }
-
   if (view === 'tiers') {
     setMode('tiers');
     await renderTierRankings(root);
-    history.replaceState(null, '', '#tiers');
     return;
   }
-
-  // counters sub-tabs
   setMode('counters');
   for (const b of tabButtons) {
     const active = b.dataset.tab === view;
@@ -45,11 +45,21 @@ async function show(view) {
     b.setAttribute('aria-selected', active);
   }
   await COUNTER_TABS[view](root);
-  history.replaceState(null, '', `#${view}`);
 }
 
-for (const b of tabButtons) b.addEventListener('click', () => show(b.dataset.tab));
-if (brand) brand.addEventListener('click', () => show('home'));
+// Navigate and record history so the browser Back button works.
+function go(view, { push = true } = {}) {
+  if (push) history.pushState({ view }, '', `#${view}`);
+  else history.replaceState({ view }, '', `#${view}`);
+  render(view);
+}
 
-const hash = location.hash.replace('#', '');
-show(VIEWS.includes(hash) ? hash : 'home');
+// Back/forward: history already moved, so re-render without pushing again.
+window.addEventListener('popstate', (e) => {
+  render(normalize(e.state?.view ? `#${e.state.view}` : location.hash));
+});
+
+for (const b of tabButtons) b.addEventListener('click', () => go(b.dataset.tab));
+if (brand) brand.addEventListener('click', () => go('home'));
+
+go(normalize(location.hash), { push: false });
