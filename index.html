@@ -10,9 +10,13 @@
   <body>
     <header class="topbar">
       <div class="topbar-top">
-        <button class="brand" type="button" title="Home">Counter Watch</button>
-        <button class="mode-toggle" type="button" hidden></button>
+        <button class="brand" type="button" title="Counters">Counter Watch</button>
       </div>
+      <nav class="modes" role="tablist" aria-label="App section">
+        <button class="mode" type="button" data-mode="counters" role="tab" aria-selected="true">🎯 Counters</button>
+        <button class="mode" type="button" data-mode="tiers" role="tab" aria-selected="false">📊 Tier Rankings</button>
+      </nav>
+      <p class="page-desc"></p>
       <nav class="tabs" role="tablist">
         <button class="tab" data-tab="single" role="tab" aria-selected="true">Single</button>
         <button class="tab" data-tab="team" role="tab" aria-selected="false">Team</button>

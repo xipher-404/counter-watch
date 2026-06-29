@@ -70,21 +70,37 @@ body {
 }
 .brand:hover { text-decoration: underline; }
 
-/* Always-visible switch between Counters and Tier Rankings. */
-.mode-toggle {
-  flex: 0 0 auto;
+/* Always-visible pair: Counters | Tier Rankings, active one highlighted. */
+.modes {
+  display: flex;
+  gap: 6px;
+}
+.mode {
+  flex: 1;
   background: var(--bg-elev-2);
-  color: var(--fg);
+  color: var(--fg-dim);
   border: 1px solid var(--border);
   border-radius: 999px;
-  padding: 6px 14px;
+  padding: 8px 14px;
   font: inherit;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
-.mode-toggle:hover { border-color: var(--accent); }
-.mode-toggle:active { transform: scale(0.97); }
+.mode:hover { border-color: var(--accent); }
+.mode:active { transform: scale(0.97); }
+.mode.active {
+  background: var(--accent);
+  color: #1a1300;
+  border-color: var(--accent);
+}
+
+/* Page-orientation copy directly below the mode buttons. */
+.page-desc {
+  margin: 0;
+  font-size: 13px;
+  color: var(--fg-dim);
+}
 
 .tabs {
   display: flex;
@@ -814,50 +830,6 @@ body.modal-open {
   min-width: 22px;
   text-align: center;
 }
-
-/* ---- Home / landing screen ---- */
-.home {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding-top: 24px;
-}
-.home-title {
-  margin: 8px 0 4px;
-  font-size: 28px;
-  color: var(--accent);
-}
-.home-sub {
-  margin: 0 0 24px;
-  color: var(--fg-dim);
-}
-.home-cards {
-  display: grid;
-  gap: 14px;
-  width: 100%;
-  max-width: 520px;
-}
-.home-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 6px;
-  padding: 20px;
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--fg);
-  cursor: pointer;
-  font-family: inherit;
-  transition: border-color 0.15s, transform 0.05s;
-}
-.home-card:hover { border-color: var(--accent); }
-.home-card:active { transform: scale(0.99); }
-.home-card-icon { font-size: 30px; }
-.home-card-title { font-size: 20px; font-weight: 700; }
-.home-card-desc { font-size: 13px; color: var(--fg-dim); }
 
 /* ---- Tier Rankings ---- */
 .tier-filter {

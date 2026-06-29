@@ -3,53 +3,50 @@ import { renderSinglePick } from './ui/single-pick.js';
 import { renderTeamPick } from './ui/team-pick.js';
 import { renderAdmin } from './ui/admin.js';
 import { renderTierRankings } from './ui/tier-rankings.js';
-import { renderHome } from './ui/home.js';
 import { refreshPortraitCache } from './engine/portraits.js';
 
-// Counters mode has its own sub-tabs; tiers and home are standalone views.
+// Counters mode has its own sub-tabs; tiers is a standalone view.
 const COUNTER_TABS = { single: renderSinglePick, team: renderTeamPick, admin: renderAdmin };
-const VIEWS = ['home', 'single', 'team', 'admin', 'tiers'];
+const VIEWS = ['single', 'team', 'admin', 'tiers'];
+const DEFAULT_VIEW = 'single'; // Counters is the app's landing page.
+
+// Page-orientation copy shown directly below the mode buttons (carried over
+// from the retired landing screen).
+const PAGE_DESC = {
+  counters: 'Pick the enemy hero or team and get ranked counter picks across every role.',
+  tiers: 'Every hero, ranked S-Tier to E-Tier, by current performance. Refreshed from official stats.',
+};
 
 const root = document.getElementById('app');
 const tabsNav = document.querySelector('.tabs');
 const tabButtons = document.querySelectorAll('.tab');
 const brand = document.querySelector('.brand');
-const modeToggle = document.querySelector('.mode-toggle');
+const modeButtons = document.querySelectorAll('.mode');
+const pageDesc = document.querySelector('.page-desc');
 
-let lastCounterTab = 'single'; // where the toggle returns to from Tiers
+let lastCounterTab = 'single'; // where the Counters button returns to from Tiers
 
-// The toggle is the always-visible way to jump between Counters and Tiers
-// (the brand title still goes Home).
+// Both mode buttons stay visible; the active page's button is highlighted and
+// the sub-tabs + page description follow the current mode.
 function setMode(mode) {
-  document.body.dataset.mode = mode; // 'home' | 'counters' | 'tiers'
+  document.body.dataset.mode = mode; // 'counters' | 'tiers'
   if (tabsNav) tabsNav.hidden = mode !== 'counters';
-  if (!modeToggle) return;
-  if (mode === 'tiers') {
-    modeToggle.hidden = false;
-    modeToggle.textContent = '🎯 Counters';
-    modeToggle.onclick = () => go(lastCounterTab);
-  } else if (mode === 'counters') {
-    modeToggle.hidden = false;
-    modeToggle.textContent = '📊 Tier Rankings';
-    modeToggle.onclick = () => go('tiers');
-  } else {
-    modeToggle.hidden = true; // home already shows both choices
+  if (pageDesc) pageDesc.textContent = PAGE_DESC[mode] || '';
+  for (const b of modeButtons) {
+    const active = b.dataset.mode === mode;
+    b.classList.toggle('active', active);
+    b.setAttribute('aria-selected', active);
   }
 }
 
 function normalize(hash) {
   const v = (hash || '').replace('#', '');
-  return VIEWS.includes(v) ? v : 'home';
+  return VIEWS.includes(v) ? v : DEFAULT_VIEW;
 }
 
 async function render(view) {
   await refreshPortraitCache();
 
-  if (view === 'home') {
-    setMode('home');
-    renderHome(root, { onCounters: () => go('single'), onTiers: () => go('tiers') });
-    return;
-  }
   if (view === 'tiers') {
     setMode('tiers');
     await renderTierRankings(root);
@@ -78,6 +75,9 @@ window.addEventListener('popstate', (e) => {
 });
 
 for (const b of tabButtons) b.addEventListener('click', () => go(b.dataset.tab));
-if (brand) brand.addEventListener('click', () => go('home'));
+for (const b of modeButtons) {
+  b.addEventListener('click', () => go(b.dataset.mode === 'tiers' ? 'tiers' : lastCounterTab));
+}
+if (brand) brand.addEventListener('click', () => go(DEFAULT_VIEW));
 
 go(normalize(location.hash), { push: false });
