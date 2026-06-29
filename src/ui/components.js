@@ -18,7 +18,7 @@ export function el(tag, props = {}, ...children) {
   return node;
 }
 
-export async function heroPortrait(hero, { size = 'md', clickable = true, onClick = null } = {}) {
+export async function heroPortrait(hero, { size = 'md', clickable = true, onClick = null, showMetaBadge = true } = {}) {
   const wrap = el('button', {
     class: `portrait portrait-${size} role-${hero.role}${clickable ? '' : ' static'}`,
     dataset: { heroId: hero.id, role: hero.role },
@@ -35,14 +35,18 @@ export async function heroPortrait(hero, { size = 'md', clickable = true, onClic
   wrap.appendChild(el('span', { class: 'portrait-name' }, hero.name));
   if (hero.new_hero) wrap.appendChild(el('span', { class: 'portrait-new', title: 'Newer hero — kit data may be limited' }, 'NEW'));
 
-  const meta = metaTierFor(hero.id);
-  if (meta.explicit && ['S', 'A', 'D'].includes(meta.tier)) {
-    wrap.appendChild(
-      el('span', {
-        class: `portrait-tier tier-${meta.tier}`,
-        title: `Current meta: ${meta.tier}-tier${meta.note ? ' — ' + meta.note : ''}`,
-      }, meta.tier),
-    );
+  if (showMetaBadge) {
+    const meta = metaTierFor(hero.id);
+    if (meta.explicit && ['S', 'A', 'D', 'E'].includes(meta.tier)) {
+      const wr = meta.winrate != null ? ` (${meta.winrate}% win rate)` : '';
+      const src = meta.source === 'override' ? ` — manual: ${meta.note}` : '';
+      wrap.appendChild(
+        el('span', {
+          class: `portrait-tier tier-${meta.tier}`,
+          title: `Current meta: ${meta.tier}-tier${wr}${src}`,
+        }, meta.tier),
+      );
+    }
   }
 
   getPortraitURL(hero).then((url) => {

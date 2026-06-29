@@ -140,9 +140,10 @@ async function main() {
     for (const s of subroleFills) console.log(`  ~ ${s.id}: ${s.was} -> ${s.now}`);
   }
 
-  // ---- meta staleness -------------------------------------------------------
-  // The tier list in src/data/meta.json drifts every patch; flag its age.
-  console.log('\n— Competitive meta (src/data/meta.json tier list) —');
+  // ---- competitive win-rate stats (powers the Tier Rankings) ----------------
+  // Pull official Blizzard competitive win/pick rates (via OverFast) into
+  // meta.json. Hero tiers derive from these unless manually overridden.
+  console.log('\n— Competitive meta (src/data/meta.json) —');
   let metaDoc = null;
   try {
     metaDoc = JSON.parse(await readFile(META_FILE, 'utf-8'));
@@ -151,20 +152,44 @@ async function main() {
   }
   if (metaDoc) {
     const m = metaDoc._meta || {};
-    const age = daysSince(m.last_updated);
-    console.log(`  Snapshot: ${m.season || '?'} — last_updated ${m.last_updated || '?'}`);
-    if (age === null) {
-      console.log('  Could not parse meta.json last_updated (use a YYYY-MM-DD date).');
-    } else if (age > STALE_AFTER_DAYS) {
-      console.log(`  STALE: tier list is ${age} days old (> ${STALE_AFTER_DAYS}). Overwatch usually patches`);
-      console.log('  within this window. Re-pull current placements and replace meta.json from, e.g.:');
-      console.log('    https://www.counterwatch.gg/stats/overwatch/tier-list');
-      console.log('    https://mobalytics.gg/overwatch/tier-lists/standard');
-    } else {
-      console.log(`  Tier list is ${age} days old — likely still current.`);
+    console.log(`  Snapshot: ${m.season || '?'} — stats_updated ${m.stats_updated || 'never'}`);
+    const age = daysSince(m.stats_updated);
+    if (age !== null && age > STALE_AFTER_DAYS) {
+      console.log(`  Win-rate stats are ${age} days old (> ${STALE_AFTER_DAYS}) — refreshing recommended.`);
     }
+    const statsUrl = m.stats_url;
+    let stats = null;
+    if (statsUrl) {
+      try {
+        const res = await fetch(statsUrl, { headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const arr = await res.json();
+        stats = {};
+        for (const s of arr) stats[s.hero] = { winrate: s.winrate, pickrate: s.pickrate };
+        console.log(`  Fetched win/pick rates for ${Object.keys(stats).length} heroes.`);
+      } catch (err) {
+        console.log(`  Could not fetch win-rate stats (${err.message}) — leaving meta.json stats unchanged.`);
+      }
+    }
+    if (stats) {
+      // tier distribution preview from the freshly fetched numbers
+      const th = m.tier_thresholds || {};
+      const tierOf = (w) =>
+        w >= th.S ? 'S' : w >= th.A ? 'A' : w >= th.B ? 'B' : w >= th.C ? 'C' : w >= th.D ? 'D' : 'E';
+      const dist = { S: 0, A: 0, B: 0, C: 0, D: 0, E: 0 };
+      for (const v of Object.values(stats)) dist[tierOf(v.winrate)]++;
+      console.log(`  Win-rate tier spread: ${Object.entries(dist).map(([t, n]) => t + ':' + n).join('  ')}`);
+      if (WRITE) {
+        metaDoc.stats = stats;
+        metaDoc._meta.stats_updated = TODAY;
+        await writeFile(META_FILE, JSON.stringify(metaDoc, null, 2) + '\n');
+        console.log('  Wrote src/data/meta.json (stats + stats_updated).');
+      } else {
+        console.log('  (run --write to save these into meta.json)');
+      }
+    }
+    console.log('  Tip: tiers derive from win rate; keep manual nuance in meta.json "overrides".');
   }
-  console.log('  (No free API gives reliable win rates, so the tier list is curated by hand, not auto-updated.)');
 
   if (!WRITE) {
     const changes = added.length + subroleFills.length;

@@ -4,10 +4,16 @@ A local Overwatch counter-pick assistant. Pick the enemy hero (or whole team) an
 
 ## What it does
 
-- **Single tab** — tap one enemy hero, see top counters with scores 1–10 and reasons (hitscan vs flying, anti-heal vs Mauga, etc.).
-- **Team tab** — fill 5 enemy slots (1 tank, 2 dps, 2 support); recommendations re-rank against the whole composition.
-- **Admin tab** — upload portraits for any hero. Uploads persist in IndexedDB and override bundled images.
-- Filter by counter role and damage type (hitscan / projectile / beam / melee / mixed).
+The app opens on a **home screen** with two modes:
+
+- **Counters** — the original counter-pick assistant:
+  - **Single tab** — tap one enemy hero, see top counters with scores 1–10 and reasons (hitscan vs flying, anti-heal vs Mauga, etc.).
+  - **Team tab** — fill 5 enemy slots (1 tank, 2 dps, 2 support); recommendations re-rank against the whole composition, weighted by each enemy's meta tier.
+  - **Admin tab** — upload portraits for any hero. Uploads persist in IndexedDB and override bundled images.
+  - Filter by counter role and damage type (hitscan / projectile / beam / melee / mixed).
+- **Tier Rankings** — every hero ranked **S–E by current competitive performance**. Tiers derive from official Blizzard win rates (auto-refreshed) with a thin layer of manual pro/high-elo overrides, plus a cross-link to ML7's tier list. Tap any hero to jump to its counters.
+
+The brand title (top-left) returns to the home screen.
 
 ## Stack
 
@@ -74,9 +80,16 @@ Seed data was pulled from public sources on **April 26, 2026**, then re-verified
 
 The roster is current through **Shion** (Hero 52, Season 3 "Into the Tiger's Den", 2026-06-16). The 2025–2026 heroes (Domina, Emre, Anran, Mizuki, Jetpack Cat, Sierra, Vendetta, Wuyang, Hazard, Freja) shipped after the seed AI's training cutoff and once carried placeholder attributes — their kits are **now verified** from the API and public reveals. Every hero also records a `subrole` (Blizzard's hero archetype, e.g. *initiator*, *flanker*, *stalwart*).
 
-### Current meta (`src/data/meta.json`)
+### Current meta + Tier Rankings (`src/data/meta.json`)
 
-`meta.json` holds a dated Season 3 tier list (S/A/B/C/D) used to badge heroes in the UI — pick an enemy and you'll see their current standing on the portrait (top-left) and in the counters header. It's a **community-consensus snapshot, not exact ladder stats**: Overwatch patches roughly every two weeks and tier sources openly disagree (the same week, Reinhardt was rated S-tier by win-rate trackers and D-tier by editorial guides). Heroes without an explicit entry default to tier **B** (viable). Refresh it by re-pulling current placements and replacing the file — `npm run refresh-data` flags how stale it is. This is the fastest-drifting data in the app; treat it as a hint, not gospel.
+The **Tier Rankings** view and the in-app tier badges are driven by `meta.json`, which uses a **hybrid** model:
+
+- **`stats`** — official Blizzard competitive win/pick rates per hero, pulled from the OverFast `/heroes/stats` endpoint. Auto-refreshed by `npm run refresh-data -- --write`.
+- A hero's tier is **derived from its win rate** via `tier_thresholds` (default S ≥ 54, A ≥ 52, B ≥ 50.5, C ≥ 49, D ≥ 47.5, else E).
+- **`overrides`** — a small hand-maintained set that bumps heroes off their win-rate bucket for nuance win rate misses. All-rank win rate rewards easy-to-pilot heroes (e.g. Reinhardt, inflated by low ranks → overridden down) and understates high-skill picks (Sojourn, Tracer, Ana, Kiriko → overridden up). Overridden heroes are outlined and marked `✎` in the tier view. Delete an override to fall back to the win rate.
+- **`community_links`** — e.g. ML7's tier list, surfaced as a cross-reference for the pro/high-elo read that win rate alone can't capture.
+
+Why hybrid: win rate is objective and auto-updatable but rank-aggregated; streamer/pro tiers capture skill-ceiling nuance but can't be scraped reliably. The backbone stays current automatically; the overrides are where you encode judgement. Resolution order is **override → win-rate-derived → default B** (`metaTierFor` in [data.js](src/engine/data.js)).
 
 ## Keeping data fresh
 
@@ -92,9 +105,10 @@ npm run refresh-data -- --write # apply the safe, additive changes
 1. **Appends brand-new heroes** to `heroes.json` as `new_hero` placeholders for you to refine, and adds their matchups in `counters.json` by hand.
 2. **Backfills `subrole`** where missing.
 3. **Fills portrait URLs** in `scripts/portrait-sources.json` from the API — then `npm run fetch-portraits` downloads them (this now works without hunting for image links).
-4. **Stamps** `_meta.roster_size` / `last_updated` / `last_checked`.
+4. **Refreshes win/pick-rate `stats`** in `meta.json` from official Blizzard data (the Tier Rankings backbone) and stamps `stats_updated`.
+5. **Stamps** `_meta.roster_size` / `last_updated` / `last_checked`.
 
-What it can't do automatically is the competitive meta — no free API exposes reliable win rates, so the script just flags how stale `last_updated` is and points you at current tier-list sources. Update those notes by hand (or wire a stats source into the META section of `scripts/refresh-data.mjs`).
+The one thing it doesn't touch is your hand-curated `overrides` in `meta.json` — those encode pro/high-elo judgement that win rate misses, and you tune them against sources like ML7's tier list.
 
 ## How scoring works
 
@@ -147,11 +161,14 @@ src/
     storage.js           # IndexedDB wrapper
     portraits.js         # portrait URL resolution + cache
   ui/
-    components.js        # el(), heroPortrait(), score badges
+    components.js        # el(), heroPortrait() (+ meta tier badge), score badges
     filters.js           # role + damage type chips
-    single-pick.js       # tab 1
-    team-pick.js         # tab 2
-    admin.js             # tab 3
+    home.js              # landing screen (Counters | Tier Rankings)
+    single-pick.js       # Counters: single enemy
+    team-pick.js         # Counters: enemy team
+    admin.js             # Counters: portrait upload
+    tier-rankings.js     # Tier Rankings view (S–E bands)
+    counters-modal.js    # shared "counters vs X" modal (single-pick + tier view)
 scripts/
   refresh-data.mjs       # sync roster vs live OverFast API (npm run refresh-data)
   fetch-portraits.mjs    # batch portrait download from URLs
