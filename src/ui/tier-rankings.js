@@ -16,7 +16,12 @@ export async function renderTierRankings(root) {
   const state = { role: null };
 
   const view = el('section', { class: 'tab-view tier-rankings' });
-  view.appendChild(el('h2', {}, 'Tier Rankings'));
+  view.appendChild(
+    el('h2', { class: 'tier-title' },
+      'Tier Rankings: ',
+      el('span', { class: 'tier-title-legend' }, '% = Win Rate (Blizzard competitive)'),
+    ),
+  );
   view.appendChild(
     el('p', { class: 'help' },
       `${META.season} · ranked by official competitive win rate` +
@@ -83,16 +88,17 @@ async function tierHero(hero, meta) {
     showMetaBadge: false,
     onClick: () => openCountersFor(hero.id),
   });
-  portrait.classList.add('tier-hero');
-  if (meta.winrate != null) {
-    portrait.appendChild(el('span', { class: 'tier-hero-wr' }, `${meta.winrate}%`));
-  }
   if (meta.source === 'override') {
     portrait.classList.add('overridden');
     portrait.appendChild(el('span', { class: 'tier-hero-mark', title: `Manual override: ${meta.note}` }, '✎'));
     portrait.title = `${hero.name}, manual override: ${meta.note}`;
   }
-  return portrait;
+  // Win rate sits under the portrait (the legend in the heading explains % = win rate).
+  const wrap = el('div', { class: 'tier-hero' }, portrait);
+  if (meta.winrate != null) {
+    wrap.appendChild(el('span', { class: 'tier-hero-wr' }, `${meta.winrate}%`));
+  }
+  return wrap;
 }
 
 function buildFooter() {
