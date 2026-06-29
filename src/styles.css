@@ -285,6 +285,8 @@ h3 { font-size: 14px; color: var(--fg-dim); letter-spacing: 0.5px; }
 .counter-card .portrait {
   flex: 0 0 72px;
   width: 72px;
+  /* the card already carries the role-colored left edge; don't repeat it */
+  border-left: 2px solid var(--border);
 }
 .counter-meta {
   display: flex;
